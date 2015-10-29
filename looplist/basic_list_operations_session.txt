@@ -1,0 +1,58 @@
+src/looplist> python
+Python 2.7.5 (default, Nov  7 2013, 18:15:55) 
+[GCC 4.7.2 20120920 (Cray Inc.)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit
+Use exit() or Ctrl-D (i.e. EOF) to exit
+>>> quit
+Use quit() or Ctrl-D (i.e. EOF) to exit
+>>> exit
+Use exit() or Ctrl-D (i.e. EOF) to exit
+>>> exit()
+src/looplist> xterm &
+[1] 6188
+src/looplist> python 
+Python 2.7.5 (default, Nov  7 2013, 18:15:55) 
+[GCC 4.7.2 20120920 (Cray Inc.)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> C=[-10,-5,0,5,10,15,20,25,30]     # create list
+>>> C.append(35)
+>>> C
+[-10, -5, 0, 5, 10, 15, 20, 25, 30, 35]
+>>> C=C+[40,45]    # extend C at the end
+>>> C     # view list C
+[-10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+>>> C.insert(0,-15)        # insert new element -15 as index 0
+>>> C
+[-15, -10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+>>> del C[2]     # delete 3rd element
+>>> C
+[-15, -10, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+>>> del C[2]     # delete what is now 3rd element
+>>> C
+[-15, -10, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+>>> len(C)
+11
+>>> len(C)     # length of list
+11
+>>> C.index(10)
+3
+>>> C.index(10)    # find index for an element (10)
+3
+>>> 10 in C    # is 10 an element in C?
+True
+>>> C[-1]
+45
+>>> C[-1]      # view the last list element
+45
+>>> C[-2]      # view the next (-to-the) last list element
+40
+>>> somelist = ['book.tex', 'book.log', 'book.pdf']
+>>> texfile, logfile, pdf = somelist
+>>> texfile
+'book.tex'
+>>> logfile
+'book.log'
+>>> pdf
+'book.pdf'
+>>> 

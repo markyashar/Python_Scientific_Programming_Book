@@ -1,0 +1,71 @@
+
+module load python
+module load python-libs
+module load python_base
+module load numpy
+module load matplotlib
+module load scipy
+
+
+
+# Extracting Sublists 
+
+# A[i:] is the sublist starting with index i in A and continuing to the end of
+A:
+
+>>> A = [2, 3.5, 8, 10]
+>>> A[2:]
+[8, 10]
+>>> 
+# A[i:j] is the sublist starting w/index i in A and continuing up to and
+# including index j-1. Make sure you remember that the element corresponding
+# to index j is not included in the sublist:
+
+>>> A[1:3]
+[3.5, 8]
+
+# A[:i] is sublist starting w/index 0 in A & continuing up to & including
+# the element w/index i-1:
+
+>>> A[:3]
+[2, 3.5, 8]
+
+# A[1:-1] extracts all elements except 1st and last (recall that index -1 
+# refers to last element), and A[:] is whole list:
+
+>>> A[1:-1]
+[3.5, 8]
+>>> A[:]
+[2, 3.5, 8, 10]
+
+# Sublists are always copies of the original list, so if you modify the 
+# sublist the original list remains unaltered and vice versa:
+
+>>> l1 = [1, 4, 3]
+>>> l2 = l1[:-1]
+>>> l2
+[1, 4]
+>>> l1[0] = 100
+>>> l1
+[100, 4, 3]     # l1 is modified
+>>> l2          # l2 is modified
+[1, 4]
+>>> 
+
+# The fact that slicing makes a copy can also be illustrated by the following 
+# code:
+
+>>> B = A[:]
+>>> C = A
+>>> B == A
+True
+>>> B is A
+False
+>>> C is A
+True
+>>> 
+
+# The B == A boolean expression is true if all elements in B are equal to the
+# corresponding elements in A. The test 'B is A' is true if A and B are names
+# for the same list. Setting C = A makes C refer to the same list object is
+# A, while B = A[:] makes B refer to a copy of the list referred to by A

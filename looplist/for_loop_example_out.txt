@@ -1,0 +1,6 @@
+list element:  0
+list element:  10
+list element:  20
+list element:  40
+list element:  100
+The degrees list has 5 elements

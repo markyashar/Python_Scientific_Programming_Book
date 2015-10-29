@@ -1,0 +1,38 @@
+# Hardware information. Along w/CPU-time measurements it's often convenient to print out info. about hardware
+# on which experiment was done. Python has module 'platform' w/info. on current hardware. Function
+# 'scitools.misc.hardware_info' applies 'platform' module to extract relevant hardware info. A simple call is:
+
+>>> import scitools.misc, pprint
+>>> pprint.pprint(scitools.misc.hardware_info())
+{'numpy.distutils.cpuinfo.cpu.info': {'arch': 'i386',
+                                      'machine': 'i486',
+                                      'sysctl_hw': {'hw.availcpu': '8',
+                                                    'hw.busfrequency': '100000000',
+                                                    'hw.byteorder': '1234',
+                                                    'hw.cachelinesize': '64',
+                                                    'hw.cpufrequency': '2500000000',
+                                                    'hw.epoch': '0',
+                                                    'hw.l1dcachesize': '32768',
+                                                    'hw.l1icachesize': '32768',
+                                                    'hw.l2cachesize': '262144',
+                                                    'hw.l2settings': '1',
+                                                    'hw.l3cachesize': '8388608',
+                                                    'hw.l3settings': '1',
+                                                    'hw.machine': 'x86_64',
+                                                    'hw.memsize': '8589934592',
+                                                    'hw.model': 'MacBookPro8,2',
+                                                    'hw.ncpu': '8',
+                                                    'hw.pagesize': '4096',
+                                                    'hw.physmem': '2147483648',
+                                                    'hw.tbfrequency': '1000000000',
+                                                    'hw.usermem': '877527040',
+                                                    'hw.vectorunit': '1'}},
+ 'platform module': {'identifier': 'Darwin-11.4.2-x86_64-i386-64bit',
+                     'python build': ('r271:86832', 'Jul 31 2011 19:30:53'),
+                     'python version': '2.7.1',
+                     'uname': ('Darwin',
+                               'Marks-MacBook-Pro-2.local',
+                               '11.4.2',
+                               'Darwin Kernel Version 11.4.2: Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64',
+                               'x86_64',
+                               'i386')}}

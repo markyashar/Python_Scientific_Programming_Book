@@ -1,0 +1,18 @@
+# A module is loaded within Python code using the 'import' statement
+
+>>> import numpy
+>>> print numpy.tan(numpy.pi/2)
+1.63312393532e+16
+
+# 'import numpy' doesn't actually load a shared library. It loads a Python
+# package, which is just a directory (named 'numpy' in this case) w/special
+# file inside named '_init_.py. When a package is imported, the _init_.py is
+# evaluated. It's usually used to import regular modules that exist inside the
+# package, or even additional subpackages.
+
+>>> from numpy import * 
+>>> from numpy import linalg
+>>> from numpy import linalg as la
+>>> import numpy as n
+>>> import numpy.linalg
+>>> 

@@ -1,0 +1,108 @@
+# Turning String Expressions into Functions: The StringFucntion tool turns formulas into Python functions.
+
+>>> from scitools.StringFunction import StringFunction
+>>> formula = 'exp(x)*sin(x)'
+>>> f = StringFunction(formula)     # turn formula into function f(x)
+# The f object now behaves as an ordinary Python function of x:
+>>> f(0)
+0.0
+>>> import math
+>>> from math import *
+>>> f(pi)
+2.8339175162785867e-15
+>>> f(log(1))
+0.0
+# Expressions involving other independent variables than x are also possible. Here's example w/function
+# g(t) = A*exp(-a*t)*sin(omega*x):
+>>> g = StringFunction('A*exp(-a*t)*sin(omega*x)',independent_variable='t', A=1, a=0.1, omega=pi, x=0.5)
+#The 1st argument is the function formula, as before, but now we need to specify name of independent
+# variable ('x' is default). Ohter parameters in the function (A,a,omega,x) must be specified w/values,
+# & we use keyword arguments, consistent w/the names in the function formula, for this purpose.
+# Calling g(t) works as if g were a plain Python function of t, which "remembers" all parameters A, a,
+# omega, & x, & their values. 
+>>> g(0)
+1.0
+>>> g(pi)
+0.7304026910486456
+>>> g(log(1))
+1.0
+>>> g(log(1.2))
+0.9819330445619127
+# Any of the parameters A, a, omega & x can be changed later by calls like:
+>>> g.set_parameters(omega=0.1)
+>>> g(0)
+0.04997916927067833
+>>> g(pi)
+0.03650491973167923
+>>> g(log(1.2))
+0.04907619784663236
+>>> g.set_parameters(omega=0.1, A=5, x=0)
+>>> g(0)
+0.0
+>>> g(pi)
+0.0
+>>> g(log(1.2))
+0.0
+>>> 
+
+"""
+Can use pydoc to bring up more documentation on the possibilities w/StringFunction. Just run
+pydoc scitools.StringFunction.StringFunction
+
+Help on class StringFunction in scitools.StringFunction:
+
+scitools.StringFunction.StringFunction = class StringFunction
+ |  Representation of a string formula as a function of one or
+ |  more variables, optionally with parameters.
+ |  
+ |  Example on usage:
+ |  
+ |  >>> from scitools.StringFunction import StringFunction
+ |  >>> f = StringFunction('1+sin(2*x)')
+ |  >>> f(1.2)
+ |  1.6754631805511511
+ |  
+ |  >>> f = StringFunction('1+sin(2*t)', independent_variable='t')
+ |  >>> f(1.2)
+ |  1.6754631805511511
+ |  
+ |  >>> f = StringFunction('1+A*sin(w*t)', independent_variable='t',                            A=0.1, w=3.14159)
+ |  >>> f(1.2)
+ |  0.94122173238695939
+ |  >>> f.set_parameters(A=1, w=1)
+ |  >>> f(1.2)
+ |  1.9320390859672263
+ |  
+ |  >>> f(1.2, A=2, w=1)   # can also set parameters in the call
+ |  2.8640781719344526
+ |  
+ |  >>> # function of two variables:
+ |  >>> f = StringFunction('1+sin(2*x)*cos(y)',                            independent_variables=('x','y'))
+ |  >>> f(1.2,-1.1)
+ |  1.3063874788637866
+ |  
+ |  >>> f = StringFunction('1+V*sin(w*x)*exp(-b*t)',                            independent_variables=('x','t'))
+ |  >>> f.set_parameters(V=0.1, w=1, b=0.1)
+ |  >>> f(1.0,0.1)
+ |  1.0833098208613807
+ |  >>> str(f)  # print formula with parameters substituted by values
+ |  '1+0.1*sin(1*x)*exp(-0.1*t)'
+ |  >>> repr(f)
+ |  "StringFunction('1+V*sin(w*x)*exp(-b*t)', independent_variables=('x', 't'), b=0.10000000000000001, w=1, V=0.10000000000000001)"
+ |  
+ |  >>> # vector field of x and y:
+ |  >>> f = StringFunction('[a+b*x,y]',                            independent_variables=('x','y'))
+ |  >>> f.set_parameters(a=1, b=2)
+ |  >>> f(2,1)  # [1+2*2, 1]
+ |  [5, 1]
+ |  
+ |  StringFunction expressions may contain fractions like 1/2 and these
+ |  always result in float division (not integer division). Here is
+ |  an example:
+ |  
+ |  >>> from scitools.StringFunction import StringFunction
+ |  >>> f = StringFunction('1/4 + 1/2*x')
+ |  >>> f(2)
+ |  1.25
+
+"""

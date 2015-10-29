@@ -1,0 +1,98 @@
+# Suppose we need to store temperatures from 3 cities: Oslo, London, & Paris. For this
+# purpose, we can use a list,
+>>> temps = [13, 15.4, 17.5]
+# but then we need to remember sequence of cities, e.g., index 0 corresponds to Oslo,
+# index 1 to London, & index 2 to Paris. That is, London temperature is obtained as
+# temps[1]. Dictionary w/city name as index is more convenient, because this allows
+# us to write temps['London'] to look up temp. in London. Such dictionary is created
+# by 1 of following 2 statements
+>>> temps = {'Olso': 13, 'London': 15.4, 'Paris': 17.5}
+# or
+>>> temps = dict(Oslo=13, London=15.4, Paris=17.5)
+
+# Additional text-value pairs can be added when desired, e.g., 
+>>> temps['Madrid'] = 26.0
+>>> print temps
+{'Paris': 17.5, 'Oslo': 13, 'London': 15.4, 'Madrid': 26.0}
+
+# The string "indices" in a dictionary are called keys. To loop over keys in a 
+# dictionary d, on writes 'for key in d:' & works w/key & corresponding value
+# 'd[key]' inside loop. We may apply this technique to write out temperatures in
+# 'temps' dictionary from previous paragraph:
+
+>>> for city in temps:
+...     print 'The temperature in %s in %g' % (city, temps[city])
+... 
+The temperature in Paris in 17.5
+The temperature in Oslo in 13
+The temperature in London in 15.4
+The temperature in Madrid in 26
+>>> 
+
+# Can check if a key is present in dictioary by syntax 'if key in d:'
+>>> if 'Berlin' in temps:
+...     print 'Berlin:', temps['Berlin']
+... else:
+...     print 'No temperature data for Berlin'
+... 
+No temperature data for Berlin
+>>> 
+
+# Writing 'key in d' yields standard boolean expression, e.g.,
+>>> 'Oslo' in temps
+True
+>>> 
+
+# The keys & values can be extracted as lists from a dictionary:
+>>> temps.keys()
+['Paris', 'Oslo', 'London', 'Madrid']
+>>> temps.values()
+[17.5, 13, 15.4, 26.0]
+>>> 
+
+# An important feature of keys method in dictionaries is that order of returned list of keys
+# is unpredictable. If you need to traverse the keys in certain order, can sort the keys. A
+# loop over the keys in temps dictionary in alphabetic order is written as
+
+>>> for city in sorted(temps):
+...     print city
+... 
+London
+Madrid
+Oslo
+Paris
+>>> 
+
+# Python also has special dictionary type, called OrderedDict, found in collections module. This 
+# dictionary remembers order of key-value pairs as they were created. A for loop over an
+# OrderedDict object will always visit the keys in this particular order.
+
+# A key-value pair can be removed by del d[key]:
+>>> del temps['Oslo']
+>>> temps
+{'Paris': 17.5, 'London': 15.4, 'Madrid': 26.0}
+>>> len(temps)  # number of key-value pairs in dictionary
+3
+>>> 
+
+# Sometimes need to take a copy of dictionary:
+>>> temps_copy = temps.copy()
+>>> del temps_copy['Paris']    # this does not affect temps
+>>> temps_copy
+{'Madrid': 26.0, 'London': 15.4}
+>>> temps
+{'Paris': 17.5, 'London': 15.4, 'Madrid': 26.0}
+>>> 
+
+# Note: If two variables refer to same dictionary and we change contents of dictionary through either
+# of variables, change will be seen in both variables:
+
+>>> t1 = temps
+>>> t1['Stockholm'] = 10.0   # change t1
+>>> temps                    # temps is also changed
+{'Paris': 17.5, 'London': 15.4, 'Stockholm': 10.0, 'Madrid': 26.0}
+>>> 
+
+# To avoid that temps is affected by adding a new key-value pair to t1, t1 must be a copy of temps.
+
+ 

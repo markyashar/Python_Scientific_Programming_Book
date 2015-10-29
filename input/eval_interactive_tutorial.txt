@@ -1,0 +1,62 @@
+# The Magic "eval" Function: Python has a function 'eval', which takes a string as argument &
+# evaluates this string as a Python expression. This functionality can be used to turn input into running code
+# on the fly. To realize what it means, we invoke an interactive session:
+
+>>> r = eval('1+2')
+>>> r
+3
+>>> type(r)
+<type 'int'>
+>>> r = 1+2
+>>> r
+3
+>>> type(r)
+<type 'int'>
+>>> r = eval('2.5')
+>>> r
+2.5
+>>> type(r)
+<type 'float'>
+>>> r = eval('"math programming"')
+>>> r
+'math programming'
+>>> type(r)
+<type 'str'>
+>>> r = eval('math programming')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<string>", line 1
+    math programming
+                   ^
+SyntaxError: unexpected EOF while parsing
+>>> r = 'math programming'
+>>> r
+'math programming'
+>>> s = "'math programming'"
+>>> eval(s)
+'math programming'
+>>> r = eval('[1,6,7.5]')
+>>> r
+[1, 6, 7.5]
+>>> type(r)
+<type 'list'>
+>>> r=[1,6,7.5]
+>>> r
+[1, 6, 7.5]
+>>> type(r)
+<type 'list'>
+>>> r=eval('(-1,1)')
+>>> r
+(-1, 1)
+>>> type(r)
+<type 'tuple'>
+>>> from math import sqrt
+>>> r = eval('sqrt(2)')
+>>> r
+1.4142135623730951
+>>> type(r)
+<type 'float'>
+>>> r=sqrt(2)
+>>> r
+1.4142135623730951
+>>> 

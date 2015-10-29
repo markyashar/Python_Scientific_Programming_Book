@@ -1,0 +1,36 @@
+Keyword Arguments
+
+Some function arguments can be given default value so that we may leave out 
+these arguments in call, if desired. Typical function may look like:
+
+>>> def somefunc(arg1, arg2, kwarg1=True, kwarg2=0):
+...     print arg1, arg2, kwarg1, kwarg2
+... 
+
+1st 2 arguments, arg1 & arg2, are ordinary or positional arguments, while 
+latter 2 are keyword arguments or named arguments. Each keyword argument has a
+name (e.g., kwarg1 & kwarg2) and an associated default value. Keyword arguments
+must always be listed after positional arguments in function definition.
+
+When calling somefunc, may leave out some or all of keyword arguments. Keyword
+arguments that do not appear in call get their values from specified default
+values. Can demonstate effect from some calls:
+
+>>> somefunc('Hello', [1,2])
+Hello [1, 2] True 0
+>>> somefunc('Hello', [1,2], kwarg1='Hi')
+Hello [1, 2] Hi 0
+>>> somefunc('Hello', [1,2], kwarg2='Hi')
+Hello [1, 2] True Hi
+>>> somefunc('Hello', [1,2], kwarg2='Hi', kwarg1=6)
+Hello [1, 2] 6 Hi
+
+Sequence of keyword arguments does not matter in call. May also mix positional 
+and keyword arguments if we explicitly write name=value for all arguments in 
+call:
+
+
+>>> somefunc(kwarg2='Hello', arg1='Hi', kwarg1=6, arg2=[1,2], )
+Hi [1, 2] 6 Hello
+>>> 
+

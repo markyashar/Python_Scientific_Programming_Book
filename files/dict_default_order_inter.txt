@@ -1,0 +1,132 @@
+
+# Dictionaries w/default values: Looking up keys that aren't present in the dictionary
+# requires special treatment. Consider polynomial dictionary of type introduced in
+Chapter 6.2.3., e.g., p(x) = 2*x**(-3) - 1.5*x**(-1) - 2*x**2 represente by
+
+>>> p1 = {-3: 2, -1: -1.5, 2: -2}
+>>> from collections import defaultdict
+>>> def polynomial_coeff_default():
+...     # default value for polynomial dictionary
+...     return 0.0
+... 
+>>> p2 = defaultdict(polynomial_coeff_default)
+>>> p2.update(p1)
+>>> print p2
+defaultdict(<function polynomial_coeff_default at 0x10a8cc668>, {2: -2, -3: 2, -1: -1.5})
+>>> p2
+defaultdict(<function polynomial_coeff_default at 0x10a8cc668>, {2: -2, -3: 2, -1: -1.5})
+>>> p1
+{2: -2, -3: 2, -1: -1.5}
+>>> 
+
+# The p2 can be indexed by any key, and for unregistered keys the 'polynomial_coeff_default'
+# function is called to provide a value. This must be a function w/out arguments. Usually,
+# separate function is never made, but either a type is inserted or lambda function . Above
+# example is equivalent to:
+
+>>> p2 = defaultdict(lambda: 0.0)
+>>> p2 = defaultdict(float)
+>>> p2
+defaultdict(<type 'float'>, {})
+>>> print p2
+defaultdict(<type 'float'>, {})
+
+# In latter case float() is called for each unknown key, & float()
+# returns a float object w/zero value. Now can look up p2[1] & get
+# default value 0. It must be remarked that this key is then a part of
+# dictionary:
+
+>>> p2 = defaultdict(lambda: 0.0)
+>>> p2.update({2: 8})  # only one key
+>>> p2[1]
+0.0
+>>> p2[0]
+0.0
+>>> p2[-2]
+0.0
+>>> print p2
+defaultdict(<function <lambda> at 0x10a8ccde8>, {0: 0.0, 1: 0.0, 2: 8, -2: 0.0})
+
+# Ordered Dictionaries: The elements of a dictionary has an undefined order, e.g., 
+
+>>> p1 = {-3: 2, -1: -1.5, 2: -2}
+>>> print p1
+{2: -2, -3: 2, -1: -1.5}
+>>> 
+
+# One can control order of sorting the keys by the default sorting (alphabetically for string keys,
+# ascending order for number keys):
+
+>>> for key in sorted(p1):
+...     print key, p1[key]
+... 
+-3 2
+-1 -1.5
+2 -2
+
+# Sorted function also accepts an optional argument where user can
+# supply function that sorts 2 keys... However, Python features dictionary
+# type that preserves order of keys as they were registered:
+
+>>> from collections import OrderedDict
+>>> p2 = OrderedDict({-3: 2, -1: -1.5, 2: -2})
+>>> print p2
+OrderedDict([(2, -2), (-3, 2), (-1, -1.5)])
+>>> p2[-5] = 6
+>>> for key in p2:
+...     print key, p2[key]
+... 
+2 -2
+-3 2
+-1 -1.5
+-5 6
+>>> 
+
+# Example with dates as keys where order is important:
+
+>>> data = {'Jan 2': 33, 'Jan 16': 0.1, 'Feb 2': 2}
+>>> for date in data:
+...     print date, data[date]
+... 
+Feb 2 2
+Jan 2 33
+Jan 16 0.1
+>>> 
+
+# The order of the keys in the loop's not right registered order, but
+# this's easily achieved by OrderedDict:
+
+>>> data = OrderedDict()
+>>> data['Jan 2'] = 33
+>>> data['Jan 16'] = 0.1
+>>> data['Feb 2'] = 2
+>>> for date in data:
+...     print date, data[date]
+... 
+Jan 2 33
+Jan 16 0.1
+Feb 2 2
+>>> 
+
+>>> import datetime
+>>> data = {}
+>>> d = datetime.datetime.strptime   # short form
+>>> data[d('Jan 2, 2017', '%b %d, %Y')] = 33
+>>> data[d('Jan 16, 2017', '%b %d, %Y')] = 0.1
+>>> data[d('Feb 2, 2017', '%b %d, %Y')] = 2
+>>> 
+# Printing out in sorted order gives right sequence of dates:
+>>> for date in sorted(data):
+...     print date, data[date]
+... 
+2017-01-02 00:00:00 33
+2017-01-16 00:00:00 0.1
+2017-02-02 00:00:00 2
+>>> 
+
+# Time is automatically part of 'datetime' object and set to 00:00:00
+# when not specified. While OrderedDict provides simpler & shorter solution
+# to keeping keys (e.g., dates) in right order in dictionary, using 'datetime'
+# objects for dates has many advantages: dates can be formatted & written out
+# in various ways, counting days between 2 dates is easy, calculating corresponding
+# week number & name of weekday is supported, etc.

@@ -1,0 +1,29 @@
+# Nested dictionaries are dictionaries of dictionaries 
+# For example:
+
+>>> d = {'key1': {'key1': 2, 'key2': 3}, 'key2': 7}
+>>> 
+
+# Observe here that value of d['key1'] is a dictionary which we can index 
+# w/its keys 'key1' & 'key2':
+
+>> d['key1']     # this is a dictionary
+{'key2': 3, 'key1': 2}
+>>> type(d['key1'])    # proof
+<type 'dict'>
+>>> d['key1']['key1']  # index a nested dictionary
+2
+>>> d['key1']['key2']
+3
+>>> 
+# In other words, repeated indexing works for nested dictionaries as for
+# nested lists. Repeated indexing does not apply to d['key2'] since that
+# vaue is just an integer:
+
+>>> d['key2']['key1']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not subscriptable
+>>> type(d['key2'])
+<type 'int'>
+>>> 

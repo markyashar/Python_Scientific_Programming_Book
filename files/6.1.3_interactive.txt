@@ -1,0 +1,17 @@
+>>> file1 = open('test1.txt', 'r').read()     # read file into string
+>>> file1
+'ABCD\n'
+>>> len(file1)
+5
+>>> file2 = open('test2.txt', 'r').read()     # read file into string
+>>> file2
+'ABCD\n\n\n\n'
+>>> len(file2)
+8
+>>> import os
+>>> size1 = os.path.getsize('test1.txt')
+>>> size1
+5
+>>> size2 = os.path.getsize('test2.txt')
+>>> size2
+8

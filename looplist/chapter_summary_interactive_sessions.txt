@@ -1,0 +1,91 @@
+them# While Loops: Loops are used to repeat a collection of program statements
+# several times. The statements that belong to the loop must be consistently
+# indented in Python. A while loop runs as long as a condition evaluates to 
+# True:
+
+>>> t = 0; dt = 0.5; T = 2
+>>> while t <= T:
+...      print t
+...      t += dt
+... 
+0
+0.5
+1.0
+1.5
+2.0
+>>> print 'Final t:', t, '; t <= T is', t <= T
+Final t: 2.5 ; t <= T is False
+
+>>> n1 = [[0,0,1],[-1,-1,2],[-10,10,5]]
+>>> n1[0]
+[0, 0, 1]
+>>> n1[-1]
+[-10, 10, 5]
+>>> n1[0][2]
+1
+>>> n1[-1][0]
+-10
+>>> for p in n1:
+...     print p
+... 
+[0, 0, 1]
+[-1, -1, 2]
+[-10, 10, 5]
+>>> for a, b, c in n1:
+... print '%3d %3d %3d' % (a, b, c)
+  File "<stdin>", line 2
+    print '%3d %3d %3d' % (a, b, c)
+        ^
+IndentationError: expected an indented block
+>>>     print '%3d %3d %3d' % (a, b, c)
+  File "<stdin>", line 1
+    print '%3d %3d %3d' % (a, b, c)
+    ^
+IndentationError: unexpected indent
+>>>      print '%3d %3d %3d' % (a, b, c)
+  File "<stdin>", line 1
+    print '%3d %3d %3d' % (a, b, c)
+    ^
+IndentationError: unexpected indent
+>>>       print '%3d %3d %3d' % (a, b, c)
+  File "<stdin>", line 1
+    print '%3d %3d %3d' % (a, b, c)
+    ^
+IndentationError: unexpected indent
+>>> for a, b, c in n1:
+...     print '%3d %3d %3d' % (a, b, c)
+... 
+  0   0   1
+ -1  -1   2
+-10  10   5
+
+>>> for elem in [10, 20, 25, 27, 28.5]:
+...     print elem,
+... 
+10 20 25 27 28.5
+>>> 
+>>> for elem in range(1,5,2):
+...     print elem,
+... 
+1 3
+>>> range(1,5,2)
+[1, 3]
+
+>>> M=0
+>>> N=10
+>>> for j in range(M, N+1, 1):
+...     s += 1./j**2
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+ZeroDivisionError: float division by zero
+>>> print s
+0
+>>> M=1
+>>> for j in range(M, N+1, 1):
+...     s += 1./j**2
+... 
+>>> 
+>>> print s
+1.54976773117
+>>> 

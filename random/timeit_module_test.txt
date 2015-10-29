@@ -1,0 +1,17 @@
+# The timeit Module: To measure efficiency of certain set of statements or expression, code should be
+# run large number of times so overall CPU-time is of order seconds. 'timeit' module has functionality for running
+# code segment repeatedly. Below is illustration of 'timeit' for comparing efficiency sin(1.2) vs. math.sin(1.2):
+
+>>> import timeit
+>>> t = timeit.Timer('sin(1.2)', setup='from math import sin')   # 1st argument to Timer constructor is string containing code
+                                                                 # to execute repeatedly, while 2nd argument is necessary code 
+                                                                 # for initialization
+>>> t.timeit(10000000)   # run 'sin(1.2)' 10000000 times
+0.7898190021514893
+>>> t = timeit.Timer('math.sin(1.2)', setup='import math')
+>>> t.timeit(10000000)   # run 'math.sin(1.2)' 10000000 times
+1.2729449272155762
+>>> 
+
+# From this simple test can see that math.sin(1.2) runs almost 40% slower than sin(1.2)!
+ 
