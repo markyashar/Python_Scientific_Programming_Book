@@ -29,6 +29,11 @@ print 'Maximum x value = %f' % x.max()
 print 'Minimum y value = %f' % y.min()
 print 'Maximum y value = %f' % y.max()
 
+print 'Mean x value = %f' % x.mean()
+print 'Standard deviation of x value = %f' % x.std()
+print 'Mean y value = %f' % y.mean()
+print 'Standard deviation of y value = %f' % y.std()
+
 plt.plot(x, y, color='#053061', linewidth=1.5)
 plt.xlabel('x')
 plt.ylabel('y')
@@ -43,4 +48,9 @@ Minimum x value = -1.000000
 Maximum x value = 1.000000
 Minimum y value = -0.948200
 Maximum y value = 0.948200
+Mean x value = 0.000000
+Standard deviation of x value = 0.579271
+Mean y value = 0.000000
+Standard deviation of y value = 0.469008
+
 """
