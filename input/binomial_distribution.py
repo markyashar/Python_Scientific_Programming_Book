@@ -39,7 +39,7 @@ def binomial(x, n, p):
 if __name__ == "__main__":
 
     """
-Python allows a special construction fo let a file act both as a module w/function definitions only and
+Python allows a special construction to let a file act both as a module w/function definitions only and
 as an ordinary program that we can run, i.e., w/statements that apply the functions & possibly write output.
 This 2-fold 'magic' consists of putting the application part after an 'if' test of the form of what is above
 & below these comment lines. The '__name__' variable is automatically defined in any module & equals the module
