@@ -1,0 +1,41 @@
+# 8.1 Drawing Random Numbers: Python has module 'random' for generating random numbers. The function call
+# random.random() generates a random number in the half open interval [0,1).
+
+>>> import random
+>>> random.random()
+0.9776731316509563
+>>> random.random()
+0.11664637306731773
+>>> random.random()
+0.16882499235423554
+
+# All computations of random numbers are based on deterministic algorithms, so sequence of numbers
+# cannot be truly random. However, sequence of numbers appears to lack any pattern, & can therefore
+# view the numbers as random.
+
+# 8.1.1 The Seed: Every time we import 'random', subsequent sequence of 'random.random()' calls will yield
+# different numbers. For debugging purposes it's useful to get the same sequence of random numbers every
+# time we run the program. This functionality is obtained by setting a seed before we start generating numbers.
+# W/a given value of the seed, 1 & only 1 sequence of numbers is generated. The seed is an integer & set by
+# the random.seed function:
+
+>>> random.seed(121)
+
+# Let's generate 2 series of random numbers @ once, using list comprehension & a format w/2 decimals only:
+
+>>> random.seed(2)
+>>> ['%.2f' % random.random() for i in range(7)]
+['0.96', '0.95', '0.06', '0.08', '0.84', '0.74', '0.67']
+>>> ['%.2f' % random.random() for i in range(7)]
+['0.31', '0.61', '0.61', '0.58', '0.16', '0.43', '0.39']
+
+# If we set seed to 2 again, sequence of numbers is regenerated:
+
+>>> random.seed(2)
+>>> ['%.2f' % random.random() for i in range(7)]
+['0.96', '0.95', '0.06', '0.08', '0.84', '0.74', '0.67']
+
+# If we don't give a seed, 'random' module sets a seed based on the current time. That is, seed will be 
+# different each time we run program & consequently the sequence of random numbers will also be different
+# from run to run, i.e., what we want in most applications. However, we recommend to always set a seed  
+# during program development to simplify debugging & verification
